@@ -1,3 +1,10 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.row.content {height: 550px}
+
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .row.content {height: auto;}
+}
