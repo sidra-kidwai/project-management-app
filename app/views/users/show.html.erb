@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="text-center">
+    <h2>User Profile</h2>
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-bordered table-sm heading-border">
+        <tr>
+          <td>
+            <b>Name:</b>
+          </td>
+          <td>
+            <text><%= @user.name %></text>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Email:</b>
+          </td>
+          <td>
+            <text><%= @user.email %></text>
+          </td>
+        </tr>
+      </table>
+      <% if @user == current_user %>
+        <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>
