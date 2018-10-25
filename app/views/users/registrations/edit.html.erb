@@ -6,6 +6,21 @@
       <%= devise_error_messages! %>
 
       <div class="row">
+        <div class="col text-center">
+          <%= user_image_tag(resource, 200) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 col-md-offset-3">
+          <%= f.fields_for :attachment, resource.fetch_attachment do |attach| %>
+            <%= attach.label :file, "Upload a picture" %>
+            <%= attach.file_field :file, autofocus: true, class: "input form-control" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="form-group col-md-6 col-md-offset-3">
           <%= f.label :name %>
           <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: "input form-control" %>
@@ -49,11 +64,11 @@
       <div class="row">
         <div class="col actions text-center">
           <%= f.submit "Update", class: "btn btn-success" %>
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
-
+          <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
         </div>
       </div>
     <% end %>
+
     <div class= "text-center">
       <%= link_to "Back", :back, class: "text-center" %>
     </div>
