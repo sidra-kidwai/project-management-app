@@ -8,7 +8,22 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def authenticate_active_admin_user!
+    unless current_user.admin?
+      flash[:alert] = "Unauthorized Access!"
+      redirect_to root_path
+    end
+  end
+
   protected
+
+  def after_sign_in_path_for(resource)
+      if resource.admin?
+        admin_root_path
+      else
+        root_path
+      end
+    end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
