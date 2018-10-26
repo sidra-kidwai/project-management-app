@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,:recoverable,
-         :registerable, :rememberable, :validatable
+         :registerable, :rememberable, :validatable, :authenticatable
 
   has_one :attachment, as: :attachable, dependent: :destroy
 
@@ -15,4 +15,13 @@ class User < ApplicationRecord
   def fetch_attachment
     self.attachment.nil? ? self.build_attachment : self.attachment
   end
+
+  def active_for_authentication?
+    super and self.active?
+  end
+
+  def inactive_message
+    "Your account has been disabled!"
+  end
+
 end
