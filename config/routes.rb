@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   ActiveAdmin.routes(self)
   resources :users, only: [:index, :show]
+  resources :clients
 end

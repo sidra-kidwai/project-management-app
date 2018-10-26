@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def record_not_found
-    flash[:alert] = "Record does not exist!"
-    redirect_to root_path
+    redirect_to root_path, alert: "Record does not exist!"
   end
 
   def authenticate_active_admin_user!
-    unless current_user.admin?
-      flash[:alert] = "Unauthorized Access!"
-      redirect_to root_path
-    end
+    redirect_to root_path, alert: "Unauthorized Access!" unless current_user.admin?
+  end
+
+  def authenticate_manager!
+    redirect_to root_path, alert: 'Unauthorized Access!' unless current_user.manager?
   end
 
   protected

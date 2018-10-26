@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Clients
+    <%= show_create_button(@clients.model) %>
+  </h1>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= link_to client.name, client %></td>
+          <td><%= client.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

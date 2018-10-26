@@ -1,11 +1,17 @@
 <div id="sidebar-wrapper">
   <nav id="spy">
     <ul class="sidebar-nav nav">
-      <li class="sidebar-brand">
-        <a href="<%= root_path %>"><%= fa_icon "columns"%> Dashboard</a>
+      <li class="sidebar-brand <%= active_class(root_path) %>">
+        <a href="<%= root_path %>"><%= fa_icon "columns" %> Dashboard</a>
+      </li>
+      <li class="<%= active_class(users_path) %>">
+        <a href="<%= users_path %>"><%= fa_icon "users" %> Users</a>
+      </li>
+      <li class="<%= active_class(clients_path) %>">
+        <a href="<%= clients_path %>"><%= fa_icon "address-card" %> Clients</a>
       </li>
       <li>
-        <a href="<%= users_path %>"><%= fa_icon "users"%> Users</a>
+        <a href="#"><%= fa_icon "users" %> Projects</a>
       </li>
     </ul>
   </nav>

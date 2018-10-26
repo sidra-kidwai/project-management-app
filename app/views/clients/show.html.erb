@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="text-center">
+    <h2>Client Profile</h2>
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-bordered table-sm heading-border">
+        <tr>
+          <td>
+            <b>Name:</b>
+          </td>
+          <td>
+            <text><%= @client.name %></text>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Description:</b>
+          </td>
+          <td>
+            <text><%= @client.description %></text>
+          </td>
+        </tr>
+      </table>
+      <%= show_edit_button(@client) %>
+      <%= show_delete_button(@client) %>
+    </div>
+  </div>
+</div>
