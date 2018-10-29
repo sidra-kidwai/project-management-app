@@ -1,0 +1,55 @@
+<%= form_for @project do |f| %>
+  <%= render 'shared/error_messages', object: @project %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: "input form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <%= f.label :details %>
+        <%= f.text_area :details, required: true, class: "input form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <%= f.label :client_id, "Client" %>
+        <%= f.collection_select :client_id, Client.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group text-left">
+        <h3 class="text-center">Users</h3>
+        <%= f.collection_select :user_ids, User.all.user, :id, :name,
+          {prompt: true}, {multiple: true, class: 'chosen-select form-control' } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>Attachments</h3>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="form-group">
+        <div id='attachments'>
+          <%= f.fields_for :attachments do |attachment| %>
+            <%= render 'attachment_fields', f: attachment %>
+          <% end %>
+          <div class='links'>
+            <%= link_to_add_association 'Add attachment', f, :attachments %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions text-center">
+    <%= f.submit check_action_tag, class: "btn btn-success" %>
+    <%= link_to "Back", :back, class: "btn btn-info" %>
+  </div>
+<% end %>

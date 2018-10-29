@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :users, only: [:index, :show]
   resources :clients
+  resources :projects
 end

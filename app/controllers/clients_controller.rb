@@ -12,10 +12,11 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
+    @client.projects.build
   end
 
   def create
-    @client = Post.new(client_params)
+    @client = Client.new(client_params)
 
     if @client.save
       redirect_to @client, notice: "Client was successfully created!"
@@ -37,7 +38,7 @@ class ClientsController < ApplicationController
 
   def destroy
     @client.destroy
-    redirect_to root_path, notice: "Client destroyed!"
+    redirect_to clients_path, notice: "Client destroyed!"
   end
 
   private
@@ -47,6 +48,6 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :description)
+    params.require(:client).permit(:name, :description, projects_attributes: [:id, :name, :details, :_destroy])
   end
 end

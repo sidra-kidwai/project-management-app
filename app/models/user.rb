@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :registerable, :rememberable, :validatable, :authenticatable
 
   has_one :attachment, as: :attachable, dependent: :destroy
+  has_many :project_users
+  has_many :projects, through: :project_users, dependent: :destroy
 
   validates :name, presence: true
 

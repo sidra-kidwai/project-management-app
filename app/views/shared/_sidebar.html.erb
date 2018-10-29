@@ -2,16 +2,24 @@
   <nav id="spy">
     <ul class="sidebar-nav nav">
       <li class="sidebar-brand <%= active_class(root_path) %>">
-        <a href="<%= root_path %>"><%= fa_icon "columns" %> Dashboard</a>
+        <%= link_to root_path do %>
+            <%= fa_icon "line-chart" %> Dashboard
+        <% end %>
       </li>
       <li class="<%= active_class(users_path) %>">
-        <a href="<%= users_path %>"><%= fa_icon "users" %> Users</a>
+        <%= link_to users_path do %>
+            <%= fa_icon "users" %> Users
+        <% end %>
       </li>
       <li class="<%= active_class(clients_path) %>">
-        <a href="<%= clients_path %>"><%= fa_icon "address-card" %> Clients</a>
+        <%= link_to clients_path do %>
+            <%= fa_icon "address-card" %> Clients
+        <% end %>
       </li>
-      <li>
-        <a href="#"><%= fa_icon "users" %> Projects</a>
+      <li class="<%= active_class(projects_path) %>">
+        <%= link_to projects_path do %>
+            <%= fa_icon "list-alt" %> Projects
+        <% end %>
       </li>
     </ul>
   </nav>
