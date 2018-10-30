@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, except: :record_not_found
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def record_not_found
     redirect_to root_path, alert: "Record does not exist!"
@@ -11,13 +13,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Unauthorized Access!" unless current_user.admin?
   end
 
-  def authenticate_manager!
-    redirect_to root_path, alert: 'Unauthorized Access!' unless current_user.manager?
-  end
-
   protected
 
-  def after_sign_in_path_for(resource)
+    def after_sign_in_path_for(resource)
       if resource.admin?
         admin_root_path
       else
@@ -25,13 +23,21 @@ class ApplicationController < ActionController::Base
       end
     end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit(:name, :email, :password, :password_confirmation)
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+        user_params.permit(:name, :email, :password, :password_confirmation)
+      end
+      devise_parameter_sanitizer.permit(:account_update) do |user_params|
+        user_params.permit(:name, :email, :password, :password_confirmation, :current_password,
+                            attachment_attributes: [:id, :file, :attachable_id, :attachable_type])
+      end
     end
-    devise_parameter_sanitizer.permit(:account_update) do |user_params|
-      user_params.permit(:name, :email, :password, :password_confirmation, :current_password, attachment_attributes: [:id, :file, :attachable_id, :attachable_type])
+
+  private
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || root_path)
     end
-  end
 
 end

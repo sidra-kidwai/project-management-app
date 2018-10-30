@@ -1,10 +1,10 @@
 class ClientsController < ApplicationController
 
   before_action :find_client, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_manager!, only: [:new, :create, :update, :edit, :destroy]
 
   def index
     @clients = Client.all
+    authorize @clients
   end
 
   def show
@@ -13,11 +13,12 @@ class ClientsController < ApplicationController
   def new
     @client = Client.new
     @client.projects.build
+    authorize @client
   end
 
   def create
     @client = Client.new(client_params)
-
+    authorize @client
     if @client.save
       redirect_to @client, notice: "Client was successfully created!"
     else
@@ -45,6 +46,7 @@ class ClientsController < ApplicationController
 
   def find_client
     @client = Client.find(params[:id])
+    authorize @client
   end
 
   def client_params

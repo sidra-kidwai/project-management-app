@@ -19,17 +19,17 @@ module ApplicationHelper
   end
 
   def show_create_button(resource)
-    link_to "Create New", new_polymorphic_path(resource), class: "btn btn-primary pull-right" if current_user.manager?
+    link_to "Create New", new_polymorphic_path(resource), class: "btn btn-primary pull-right" if policy(resource).new?
 
   end
 
   def show_edit_button(resource)
-    link_to "Edit", edit_polymorphic_path(resource), class: "btn btn-info" if current_user.manager?
+    link_to "Edit", edit_polymorphic_path(resource), class: "btn btn-info" if policy(resource).edit?
   end
 
   def show_delete_button(resource)
     link_to "Delete", polymorphic_path(resource), method: :delete,
-            data: {confirm: "Are you sure?"}, class: "btn btn-danger" if current_user.manager?
+            data: {confirm: "Are you sure?"}, class: "btn btn-danger" if policy(resource).destroy?
   end
 
   def check_action_tag
