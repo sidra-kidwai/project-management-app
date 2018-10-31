@@ -13,7 +13,7 @@
   <body>
     <div id="wrapper" class="active">
       <%= render 'shared/nav' %>
-      <%= render 'shared/sidebar' %>
+      <%= render 'shared/sidebar' if user_signed_in? %>
       <div id="page-content-wrapper">
         <div class="page-content">
           <div class="container-fluid">
