@@ -1,0 +1,8 @@
+ <div class="comment">
+  <p><strong><%= link_to comment.user.name, user_path(comment.user) %></strong>: <%= comment.content %></p>
+  <small>At <%=date_format('time', comment.created_at) %> - <%= date_format('date', comment.created_at) %></small>
+  <% if policy(comment) %>
+    <%= link_to fa_icon('pencil'), edit_polymorphic_path([commentable, comment]), remote: true, class: "btn-xs btn-warning" if params[:action] != 'new' %>
+    <%= link_to fa_icon('trash'), [commentable, comment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn-xs btn-danger" %>
+  <% end %>
+</div>

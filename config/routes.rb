@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :clients
   resources :projects do
     resources :payments
+    resources :comments
   end
 end

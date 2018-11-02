@@ -1,0 +1,6 @@
+<% if @comment.persisted? %>
+  $("#comments").append("<%= j render @comment %>");
+<% else %>
+  $("#errors").append("  <%= j render 'shared/error_messages', object: @comment %>");
+<% end %>
+
