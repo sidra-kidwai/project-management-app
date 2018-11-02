@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="text-center">Payments for <%= @project.name %></h1>
+  <%= link_to "Back", :back, class: "btn btn-info" %>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Details</th>
+        <th>Amount</th>
+        <th> Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td>Payment generated on <%= date_format('date', payment.payment_date) %> at <%= date_format('time', payment.payment_date) %></td>
+          <td class='amount_<%= payment.id %>'><%= currency_tag %><%= payment.amount %></td>
+          <td>
+            <%= link_to fa_icon('pencil', text: 'Payment'), edit_project_payment_path(@project, payment), remote: true, class: "btn btn-primary btn-xs" %>
+            <%= link_to fa_icon('trash', text: 'Payment'), [@project, payment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div id="modal-display"></div>
+

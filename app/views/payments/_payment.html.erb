@@ -1,0 +1,6 @@
+<div>
+  <span>
+    <strong>Amount: <%= currency_tag %><%= payment.amount %></strong>
+    <p>Payment generated on <%= date_format('date', payment.payment_date) %> at <%= date_format('time', payment.payment_date) %></p>
+  </span>
+</div>
