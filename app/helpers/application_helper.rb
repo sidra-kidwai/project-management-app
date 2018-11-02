@@ -35,4 +35,19 @@ module ApplicationHelper
   def check_action_tag
     params[:action] == 'new' ? "Save" : "Save Changes"
   end
+
+  def date_format(style, date)
+    case style
+    when 'date'
+      date.strftime("%B %d, %Y")
+    when 'time'
+      date.strftime("%I:%M %p")
+    else
+      date.strftime("%m/%d/%Y")
+    end
+  end
+
+  def currency_tag
+    "$"
+  end
 end
