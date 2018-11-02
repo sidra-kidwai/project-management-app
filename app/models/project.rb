@@ -4,8 +4,13 @@ class Project < ApplicationRecord
   has_many :users, through: :project_users, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :payments, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
+
+  def no_of_payments
+    payments.count
+  end
 end

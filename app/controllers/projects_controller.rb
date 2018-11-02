@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @comments = @project.comments
   end
 
   def new

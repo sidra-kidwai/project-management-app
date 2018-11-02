@@ -19,9 +19,28 @@
             <text><%= @project.details %></text>
           </td>
         </tr>
+        <tr>
+          <td>
+            <strong>Total Payments:</strong>
+          </td>
+          <td>
+          <% if policy(Payment).index? && @payments.present? %>
+            <%= link_to @project.no_of_payments, project_payments_path(@project) %>
+          <% else %>
+            <%= @project.no_of_payments %>
+          <% end %>
+          </td>
+        </tr>
       </table>
       <%= show_edit_button(@project) %>
       <%= show_delete_button(@project) %>
+      <div class="comments text-left">
+        <h4>Comments</h4>
+        <div id="comments">
+          <%= render partial: 'comments/comment', collection: @comments, locals: {commentable: @project} %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<div id="modal-display"></div>
