@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectPolicy < ApplicationPolicy
   def index?
     true
@@ -24,7 +26,8 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   private
-    def project
-      record
-    end
+
+  def project
+    record
+  end
 end

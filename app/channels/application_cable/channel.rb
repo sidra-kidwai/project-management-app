@@ -1,4 +1,4 @@
-module ApplicationCable
-  class Channel < ActionCable::Channel::Base
-  end
+# frozen_string_literal: true
+
+class ApplicationCable::Channel < ApplicationCable::ActionCable::Channel::Base
 end

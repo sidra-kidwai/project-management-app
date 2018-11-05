@@ -1,5 +1,6 @@
-class ClientPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class ClientPolicy < ApplicationPolicy
   def index?
     true
   end
@@ -30,8 +31,7 @@ class ClientPolicy < ApplicationPolicy
 
   private
 
-    def client
-      record
-    end
-
+  def client
+    record
+  end
 end

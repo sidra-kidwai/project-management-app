@@ -1,6 +1,7 @@
-class ProjectsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
+class ProjectsController < ApplicationController
+  before_action :find_project, only: %i[show edit update destroy]
 
   def index
     @projects = Project.all
@@ -23,18 +24,17 @@ class ProjectsController < ApplicationController
     authorize @project
 
     if @project.save
-      redirect_to @project, success: "Project was successfully created!"
+      redirect_to @project, success: 'Project was successfully created!'
     else
       render 'new'
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @project.update(project_params)
-      redirect_to @project, success: "Update successful!"
+      redirect_to @project, success: 'Update successful!'
     else
       render 'edit'
     end
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to project_path, alert: "Project destroyed!"
+    redirect_to project_path, alert: 'Project destroyed!'
   end
 
   private
@@ -53,6 +53,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :details, :client_id, user_ids: [], attachments_attributes: [:id, :file, :_destroy])
+    params.require(:project).permit(:name, :details, :client_id, user_ids: [], attachments_attributes: %i[id file _destroy])
   end
 end

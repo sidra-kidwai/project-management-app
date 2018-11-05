@@ -1,5 +1,6 @@
-class PaymentPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class PaymentPolicy < ApplicationPolicy
   def index?
     @user.manager?
   end
@@ -29,5 +30,4 @@ class PaymentPolicy < ApplicationPolicy
   def payment
     record
   end
-
 end

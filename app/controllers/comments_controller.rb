@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_commentable
-  before_action :set_comment, only: [:destroy, :edit, :update]
+  before_action :set_comment, only: %i[destroy edit update]
 
   def index
     @comments = @commentable.comments
@@ -20,24 +22,23 @@ class CommentsController < ApplicationController
     @comment.save
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @comment.update(comment_params)
-    redirect_to @commentable, success: "Comment Updated"
+    redirect_to @commentable, success: 'Comment Updated'
   end
 
   def destroy
     @comment.destroy
-    redirect_to @commentable, alert: "Comment deleted!"
+    redirect_to @commentable, alert: 'Comment deleted!'
   end
 
-private
+  private
 
   def commentable_class
-    params.each do |key, value|
-      if key =~ /(.+)_id$/
+    params.each do |key, _value|
+      if /(.+)_id$/.match?(key)
         model = key.match(%r{([^\/.]+)_id$})
         return model[1].classify.constantize, key
       end
@@ -58,5 +59,4 @@ private
   def comment_params
     params.require(:comment).permit(:content)
   end
-
 end

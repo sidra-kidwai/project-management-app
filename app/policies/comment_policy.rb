@@ -1,5 +1,6 @@
-class CommentPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class CommentPolicy < ApplicationPolicy
   def create?
     @user.user?
   end
@@ -25,5 +26,4 @@ class CommentPolicy < ApplicationPolicy
   def comment
     record
   end
-
 end

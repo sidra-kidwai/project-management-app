@@ -1,14 +1,14 @@
-class ClientsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :find_client, only: [:show, :edit, :update, :destroy]
+class ClientsController < ApplicationController
+  before_action :find_client, only: %i[show edit update destroy]
 
   def index
     @clients = Client.all
     authorize @clients
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @client = Client.new
@@ -20,18 +20,17 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     authorize @client
     if @client.save
-      redirect_to @client, success: "Client was successfully created!"
+      redirect_to @client, success: 'Client was successfully created!'
     else
       render 'new'
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @client.update(client_params)
-      redirect_to @client, success: "Update successful!"
+      redirect_to @client, success: 'Update successful!'
     else
       render 'edit'
     end
@@ -39,7 +38,7 @@ class ClientsController < ApplicationController
 
   def destroy
     @client.destroy
-    redirect_to clients_path, alert: "Client destroyed!"
+    redirect_to clients_path, alert: 'Client destroyed!'
   end
 
   private
@@ -50,6 +49,6 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :description, projects_attributes: [:id, :name, :details, :_destroy])
+    params.require(:client).permit(:name, :description, projects_attributes: %i[id name details _destroy])
   end
 end

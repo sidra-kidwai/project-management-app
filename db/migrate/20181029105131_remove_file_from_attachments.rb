@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveFileFromAttachments < ActiveRecord::Migration[5.2]
   def change
     remove_column :attachments, :file, :string
