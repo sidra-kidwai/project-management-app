@@ -10,7 +10,7 @@
           <div class="comments">
             <h4>Recent Comments</h4>
             <div id="comments">
-              <%= render partial: "comment", collection: @comments, locals: {commentable: @commentable} %>
+              <%= render partial: "comment", collection: @comments, locals: { commentable: @commentable } %>
             </div>
             <% if @comments.present? %>
               <div class="row">
@@ -40,6 +40,3 @@
     </div>
   </div>
 </div>
-
-
-

@@ -1,6 +1,6 @@
 <% if @comment.persisted? %>
-  $("#comments").append("<%= j render @comment %>");
+$("#comments").append("<%= j render partial: "comment", locals: { commentable: @commentable, comment: @comment } %>");
 <% else %>
-  $("#errors").append("  <%= j render 'shared/error_messages', object: @comment %>");
+  $("#errors").append("<%= j render 'shared/error_messages', object: @comment %>");
 <% end %>
 

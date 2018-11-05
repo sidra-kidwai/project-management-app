@@ -16,6 +16,10 @@ class ClientPolicy < ApplicationPolicy
     @user.manager?
   end
 
+  def edit?
+    @user.manager?
+  end
+
   def update?
     @user.manager?
   end

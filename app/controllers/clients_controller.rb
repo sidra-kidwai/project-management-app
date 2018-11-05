@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     authorize @client
     if @client.save
-      redirect_to @client, notice: "Client was successfully created!"
+      redirect_to @client, success: "Client was successfully created!"
     else
       render 'new'
     end
@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      redirect_to @client, notice: "Update successful!"
+      redirect_to @client, success: "Update successful!"
     else
       render 'edit'
     end
@@ -39,7 +39,7 @@ class ClientsController < ApplicationController
 
   def destroy
     @client.destroy
-    redirect_to clients_path, notice: "Client destroyed!"
+    redirect_to clients_path, alert: "Client destroyed!"
   end
 
   private

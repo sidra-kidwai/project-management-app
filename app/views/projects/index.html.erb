@@ -14,10 +14,10 @@
       <% @projects.each do |project| %>
         <tr>
           <td><%= link_to project.name, project %></td>
-          <td><%= project.details.slice(1..50) %>...</td>
+          <td><%= project.details.truncate(30, separator: /\s/) %></td>
           <td>
             <%= link_to (fa_icon 'plus', text: 'Payment'), new_project_payment_path(project), remote: true, class: "btn btn-primary btn-xs" if policy(Payment).new? %>
-            <%= link_to (fa_icon 'comments'), new_project_comment_path(project), remote: true, class: "btn btn-primary btn-xs" if policy(Comment, @project).new? %>
+            <%= link_to (fa_icon 'comments'), new_project_comment_path(project), remote: true, class: "btn btn-primary btn-xs" %>
           </td>
         </tr>
       <% end %>

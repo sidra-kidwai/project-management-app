@@ -13,7 +13,7 @@
       <% @payments.each do |payment| %>
         <tr>
           <td>Payment generated on <%= date_format('date', payment.payment_date) %> at <%= date_format('time', payment.payment_date) %></td>
-          <td class='amount_<%= payment.id %>'><%= currency_tag %><%= payment.amount %></td>
+          <td class='amount-<%= payment.id %>'><%= currency_tag %><%= payment.amount %></td>
           <td>
             <%= link_to fa_icon('pencil', text: 'Payment'), edit_project_payment_path(@project, payment), remote: true, class: "btn btn-primary btn-xs" %>
             <%= link_to fa_icon('trash', text: 'Payment'), [@project, payment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>

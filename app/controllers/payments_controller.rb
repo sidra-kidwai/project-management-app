@@ -3,7 +3,7 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:edit, :update, :destroy]
 
   def index
-    @payments = @project.payments.all
+    @payments = @project.payments
     authorize @payments
   end
 
@@ -28,7 +28,7 @@ class PaymentsController < ApplicationController
 
   def destroy
     @payment.destroy
-    redirect_to project_payments_path, notice: "Payment destroyed!"
+    redirect_to project_payments_path, alert: "Payment destroyed!"
   end
 
   private

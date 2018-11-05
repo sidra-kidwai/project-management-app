@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2018_11_01_113907) do
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "commentable_id"
     t.string "commentable_type"
-    t.text "content"
+    t.bigint "commentable_id"
+    t.text "content", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_113907) do
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.decimal "amount", precision: 5, scale: 2
-    t.datetime "payment_date"
+    t.datetime "payment_date", null: false
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

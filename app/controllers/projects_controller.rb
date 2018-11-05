@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def show
     @comments = @project.comments
+    @payments = @project.payments
   end
 
   def new
@@ -22,7 +23,7 @@ class ProjectsController < ApplicationController
     authorize @project
 
     if @project.save
-      redirect_to @project, notice: "Project was successfully created!"
+      redirect_to @project, success: "Project was successfully created!"
     else
       render 'new'
     end
@@ -33,7 +34,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: "Update successful!"
+      redirect_to @project, success: "Update successful!"
     else
       render 'edit'
     end
@@ -41,7 +42,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to project_path, notice: "Project destroyed!"
+    redirect_to project_path, alert: "Project destroyed!"
   end
 
   private

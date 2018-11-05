@@ -4,15 +4,19 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @commentable.comments
+    authorize @comments
   end
 
   def new
     @comments = @commentable.comments.recent.limit(5)
     @comment = @commentable.comments.new
+    authorize @comment
   end
 
   def create
-    @comment = @commentable.comments.new(comment_params.merge(user_id: current_user.id))
+    @comment = @commentable.comments.new(comment_params)
+    @comment.user_id = current_user.id
+    authorize @comment
     @comment.save
   end
 
@@ -31,13 +35,24 @@ class CommentsController < ApplicationController
 
 private
 
+  def commentable_class
+    params.each do |key, value|
+      if key =~ /(.+)_id$/
+        model = key.match(%r{([^\/.]+)_id$})
+        return model[1].classify.constantize, key
+      end
+    end
+    nil
+  end
+
   def set_comment
     @comment = Comment.find(params[:id])
+    authorize @comment
   end
 
   def set_commentable
-    resource, id = request.path.split('/')[1,2]
-    @commentable = resource.singularize.classify.constantize.find(id)
+    klass, param = commentable_class
+    @commentable = klass.find(params[param.to_sym]) if klass
   end
 
   def comment_params

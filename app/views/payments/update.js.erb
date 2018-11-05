@@ -1,6 +1,6 @@
 <% if @payment.errors.any? %>
-  $("#errors").append("  <%= j render 'shared/error_messages', object: @payment %>");
+  $("#errors").append("<%= j render 'shared/error_messages', object: @payment %>");
 <% else %>
   $('#form_modal').modal('hide');
-  $(".amount_<%= @payment.id %>").html("$<%= @payment.amount %>");
+  $(".amount-<%= @payment.id %>").html("$<%= @payment.amount %>");
 <% end %>
