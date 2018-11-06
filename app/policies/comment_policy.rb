@@ -1,23 +1,22 @@
 class CommentPolicy < ApplicationPolicy
-
   def create?
-    @user.user?
+    true
   end
 
   def new?
-    @user.user?
+    true
   end
 
   def edit?
-    @user == comment.user
+    @user.id == comment.user_id
   end
 
   def update?
-    @user == comment.user
+    @user.id == comment.user_id
   end
 
   def destroy?
-    @user == comment.user
+    @user.id == comment.user_id
   end
 
   private
@@ -25,5 +24,4 @@ class CommentPolicy < ApplicationPolicy
   def comment
     record
   end
-
 end

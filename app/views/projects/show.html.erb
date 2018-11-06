@@ -24,11 +24,7 @@
             <strong>Total Payments:</strong>
           </td>
           <td>
-          <% if policy(Payment).index? && @payments.present? %>
-            <%= link_to @project.no_of_payments, project_payments_path(@project) %>
-          <% else %>
-            <%= @project.no_of_payments %>
-          <% end %>
+            <%= show_project_payments(@project, @payments) %>
           </td>
         </tr>
       </table>
