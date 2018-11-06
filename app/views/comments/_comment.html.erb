@@ -1,5 +1,6 @@
 <div class="comment">
   <p><strong><%= link_to comment.user.name, user_path(comment.user) %></strong>: <%= comment.content %></p>
   <small>At <%= date_format('time', comment.created_at) %> - <%= date_format('date', comment.created_at) %></small>
-  <%= edit_delete_button(commentable, comment) %>
+  <%= comment_edit_button(commentable, comment) %>
+  <%= comment_delete_button(commentable, comment) %>
 </div>
