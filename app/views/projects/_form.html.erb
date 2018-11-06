@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-md-6 col-md-offset-3">
-      <div class="form-group text-left">
+      <div class="form-group">
         <h3 class="text-center">Project users</h3>
         <%= f.collection_select :user_ids, User.user, :id, :name,
           {}, { data: {placeholder: 'Select Users'}, multiple: true, class: 'chosen-select form-control' } %>
@@ -35,20 +35,18 @@
   <div class="row">
     <h3>Attachments</h3>
     <div class="col-md-6 col-md-offset-3">
-      <div class="form-group">
-        <div id='attachments'>
-          <%= f.fields_for :attachments do |attachment| %>
-            <%= render 'attachment_fields', f: attachment %>
-          <% end %>
-          <div class='links'>
-            <%= link_to_add_association 'Add attachment', f, :attachments %>
-          </div>
+      <div id='attachments'>
+        <%= f.fields_for :attachments do |attachment| %>
+          <%= render 'attachment_fields', f: attachment %>
+        <% end %>
+        <div class='links text-right'>
+          <%= link_to_add_association (fa_icon 'plus', text: 'Add attachment'), f, :attachments, class: 'btn btn-sm btn-info' %>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="actions text-center">
+  <div class="actions text-right">
     <%= f.submit check_action_tag, class: "btn btn-success" %>
     <%= link_to "Back", :back, class: "btn btn-info" %>
   </div>
