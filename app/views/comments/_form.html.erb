@@ -1,0 +1,42 @@
+<div class="modal fade" id="comment_modal" role="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center"><%= action_name.capitalize %> Comment</h4>
+      </div>
+      <div class="modal-body">
+        <% if action_name == 'new' %>
+          <div class="comments">
+            <h4>Recent Comments</h4>
+            <div id="comments">
+              <%= render partial: "comment", collection: @comments, locals: { commentable: @commentable } %>
+            </div>
+            <% if @comments.present? %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to "View all", polymorphic_path(@commentable), class: "btn btn-info pull-right" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <%= form_for([@commentable, @comment], remote: true) do |f| %>
+          <div id="errors"> </div>
+          <div class="row">
+            <div class="form-group col-md-10">
+              <%= f.label :content %>
+              <%= f.text_area :content, required: true, class: "form-control" %>
+            </div>
+            <div class="form-group col-sm-10">
+              <%= f.submit class: "btn btn-success", data: { disable: true } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

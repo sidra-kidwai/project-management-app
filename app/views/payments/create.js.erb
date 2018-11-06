@@ -1,0 +1,7 @@
+<% if @payment.persisted? %>
+  $("#new_payment").get(0).reset();
+  $("#payments").append("<%= j render @payment %>");
+<% else %>
+  $("#errors").append("<%= j render 'shared/error_messages', object: @payment %>");
+<% end %>
+

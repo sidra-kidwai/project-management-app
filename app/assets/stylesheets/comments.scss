@@ -1,0 +1,10 @@
+.comment {
+  padding: 10px;
+  background-color: #ddd;
+  border: solid;
+  border-width: 2px 2px 0px 2px;
+  &:last-child {
+    border-bottom-width: 2px;
+    margin-bottom: 2px;
+  }
+}

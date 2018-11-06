@@ -21,13 +21,6 @@
             <%= fa_icon "list-alt" %> Projects
         <% end %>
       </li>
-      <% if policy(Payment).index? %>
-        <li class="<%= active_class(payments_path) %>">
-          <%= link_to payments_path do %>
-            <%= fa_icon "list-alt" %> Payments
-          <% end %>
-        </li>
-      <% end %>
     </ul>
   </nav>
 </div>

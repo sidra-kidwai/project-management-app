@@ -1,5 +1,6 @@
-class ClientPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class ClientPolicy < ApplicationPolicy
   def index?
     true
   end
@@ -16,6 +17,10 @@ class ClientPolicy < ApplicationPolicy
     @user.manager?
   end
 
+  def edit?
+    @user.manager?
+  end
+
   def update?
     @user.manager?
   end
@@ -26,8 +31,7 @@ class ClientPolicy < ApplicationPolicy
 
   private
 
-    def client
-      record
-    end
-
+  def client
+    record
+  end
 end

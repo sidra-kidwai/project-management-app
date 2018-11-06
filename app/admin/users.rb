@@ -1,5 +1,6 @@
-ActiveAdmin.register User do
+# frozen_string_literal: true
 
+ActiveAdmin.register User do
   permit_params :name, :email, :active, :role
 
   index do
@@ -15,7 +16,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.semantic_errors
-    f.inputs "User Details" do
+    f.inputs 'User Details' do
       input :name
       input :email
       input :role
@@ -26,17 +27,17 @@ ActiveAdmin.register User do
   member_action :change_user_state, method: :put do
     @user = User.find(params[:id])
     @user.update(active: !@user.active)
-    redirect_to resource_path, notice: "Status Changed!"
+    redirect_to resource_path, notice: 'Status Changed!'
   end
 
   member_action :update_role, method: :put do
     @user = User.find(params[:id])
     if @user.manager?
       @user.user!
-      notice = "User demoted!"
+      notice = 'User demoted!'
     elsif @user.user?
       @user.manager!
-      notice = "User promoted!"
+      notice = 'User promoted!'
     end
     redirect_to resource_path, notice: notice
   end
@@ -47,17 +48,15 @@ ActiveAdmin.register User do
     @user = User.create(permitted_params[:user].merge(password: @password, password_confirmation: @password))
     if @user
       @user.send_reset_password_instructions
-      redirect_to admin_users_path, notice: "User successfully created!"
+      redirect_to admin_users_path, notice: 'User successfully created!'
     else
-      flash[:alert] = "There was a problem processing your request."
+      flash[:alert] = 'There was a problem processing your request.'
       redirect_to admin_users_path
     end
   end
 
   action_item :change_user_state, only: :show do
-    unless user.admin?
-      link_to 'Enable/disable user', change_user_state_admin_user_path(user), method: :put
-    end
+    link_to 'Enable/disable user', change_user_state_admin_user_path(user), method: :put unless user.admin?
   end
 
   action_item :update_role, only: :show do

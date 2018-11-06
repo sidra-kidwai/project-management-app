@@ -7,15 +7,21 @@
       <tr>
         <th>Name</th>
         <th>Details</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @projects.each do |project| %>
         <tr>
           <td><%= link_to project.name, project %></td>
-          <td><%= project.details %></td>
+          <td><%= project.details.truncate(30, separator: /\s/) %></td>
+          <td>
+            <%= link_to (fa_icon 'plus', text: 'Payment'), new_project_payment_path(project), remote: true, class: "btn btn-primary btn-xs" if policy(Payment).new? %>
+            <%= link_to (fa_icon 'comments'), new_project_comment_path(project), remote: true, class: "btn btn-primary btn-xs" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+<div id="modal-display"></div>

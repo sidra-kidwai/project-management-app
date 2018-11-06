@@ -1,12 +1,14 @@
-class User < ApplicationRecord
+# frozen_string_literal: true
 
-  enum role: [:user, :manager, :admin]
+class User < ApplicationRecord
+  enum role: %i[user manager admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable,:recoverable,
+  devise :database_authenticatable, :recoverable,
          :registerable, :rememberable, :validatable, :authenticatable
 
   has_one :attachment, as: :attachable, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :project_users
   has_many :projects, through: :project_users, dependent: :destroy
 
@@ -15,15 +17,14 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :attachment, allow_destroy: true
 
   def fetch_attachment
-    self.attachment.nil? ? self.build_attachment : self.attachment
+    attachment.nil? ? build_attachment : attachment
   end
 
   def active_for_authentication?
-    super and self.active?
+    super && active?
   end
 
   def inactive_message
-    "Your account has been disabled!"
+    'Your account has been disabled!'
   end
-
 end
