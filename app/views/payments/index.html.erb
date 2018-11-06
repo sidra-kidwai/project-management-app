@@ -6,7 +6,7 @@
       <tr>
         <th>Details</th>
         <th>Amount</th>
-        <th> Action</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
           <td class='amount-<%= payment.id %>'><%= currency_tag %><%= payment.amount %></td>
           <td>
             <%= link_to fa_icon('pencil', text: 'Payment'), edit_project_payment_path(@project, payment), remote: true, class: "btn btn-primary btn-xs" %>
-            <%= link_to fa_icon('trash', text: 'Payment'), [@project, payment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+            <%= link_to fa_icon('trash', text: 'Payment'), [@project, payment], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
           </td>
         </tr>
       <% end %>
