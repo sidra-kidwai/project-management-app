@@ -6,7 +6,7 @@ class Attachment < ApplicationRecord
                       medium: '300x300>',
                       thumb: '100x100>'
                     },
-                    default_url: '/images/:style/dummy_image.jpeg'
+                    default_url: '/assets/:style/dummy_image.jpeg'
 
   belongs_to :attachable, polymorphic: true
 

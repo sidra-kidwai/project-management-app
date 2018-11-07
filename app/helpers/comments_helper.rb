@@ -12,4 +12,8 @@ module CommentsHelper
 
     link_to fa_icon('trash'), [commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-xs btn-danger' if policy(comment).destroy?
   end
+
+  def comment_new_button(commentable)
+    link_to (fa_icon 'comments', text: 'New Comment'), new_project_comment_path(commentable), remote: true, class: 'btn btn-primary btn-xs' if policy(Comment).new?
+  end
 end

@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :projects, through: :project_users, dependent: :destroy
   has_many :time_logs, dependent: :destroy
 
-
   validates :name, presence: true
 
   accepts_nested_attributes_for :attachment, allow_destroy: true
