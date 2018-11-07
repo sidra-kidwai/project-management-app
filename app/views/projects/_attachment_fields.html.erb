@@ -1,10 +1,10 @@
 <div class='nested-fields panel panel-default'>
   <div class="form-group">
     <%= f.label :file %>
-    <%= image_tag(f.object.url, class: '') if f.object %>
+    <%= image_tag(f.object.url) if f.object %>
     <%= f.file_field :file, class: "input form-control attachment-input" %>
   </div>
   <div class="text-right">
-    <%= link_to_remove_association (fa_icon 'times', text: 'Remove attachment'), f, class: 'btn btn-sm btn-danger' %>
+    <%= link_to_remove_association(fa_icon('times', text: 'Remove attachment'), f, class: 'btn btn-sm btn-danger') %>
   </div>
 </div>

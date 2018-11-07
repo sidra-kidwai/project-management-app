@@ -20,12 +20,12 @@
           <%= render 'projects/attachment_fields', f: attachment %>
         <% end %>
         <div class='links text-right'>
-          <%= link_to_add_association (fa_icon 'plus', text: 'Add attachment'), f, :attachments, partial: 'projects/attachment_fields', class: 'btn btn-sm btn-info' %>
+          <%= link_to_add_association(fa_icon('plus', text: 'Add attachment'), f, :attachments, partial: 'projects/attachment_fields', class: 'btn btn-sm btn-info') %>
         </div>
       </div>
     </div>
   </div>
   <div class="text-right">
-    <%= link_to_remove_association (fa_icon 'times', text: 'Remove Project'), f, class: 'btn btn-danger' %>
+    <%= link_to_remove_association(fa_icon('times', text: 'Remove Project'), f, class: 'btn btn-danger') %>
   </div>
 </div>
