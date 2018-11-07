@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :clients
   resources :projects, concerns: :commentable do
     resources :payments
+    resources :time_logs
   end
 end

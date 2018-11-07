@@ -13,9 +13,11 @@ gem 'mysql2'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'chosen-rails'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'momentjs-rails', '>= 2.9.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -1,0 +1,8 @@
+<% if @time_log.persisted? %>
+  $('#timelog_modal').modal('hide');
+  $('.flash-wrapper').html("<%= j render 'shared/flash_messages', flash: flash %>");
+  $('.time-log-table').append("<%= j render partial: 'time_logs/time_log', locals: { project: @project, time_log: @time_log} %>");
+<% else %>
+  $("#errors").append("<%= j render 'shared/error_messages', object: @time_log %>");
+<% end %>
+
