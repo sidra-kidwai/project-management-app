@@ -1,33 +1,31 @@
-<div class='nested-fields'>
-  <div class="form-group field">
+<div class='nested-fields panel panel-default'>
+  <div class="form-group col-md-6">
     <%= f.label :name %>
     <%= f.text_field :name, class: "input form-control" %>
   </div>
-  <div class="form-group field">
+  <div class="form-group col-md-6">
     <%= f.label :details %>
     <%= f.text_area :details, class: "input form-control" %>
   </div>
+  <h4 class="text-center">Project users</h4>
+  <div class="form-group col-md-6 col-md-offset-3">
+    <%= f.collection_select :user_ids, User.user, :id, :name,
+      {}, { data: {placeholder: 'Select Users'}, multiple: true, class: 'chosen-select form-control' } %>
+  </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h4>Project users</h4>
-      <div class="form-group">
-        <%= f.collection_select :user_ids, User.user, :id, :name,
-          {}, { data: {placeholder: 'Select Users'}, multiple: true, class: 'chosen-select form-control' } %>
-      </div>
-    </div>
-    <div class="col-md-8 col-md-offset-2">
-      <h4>Project attachments</h4>
-      <div class="form-group">
-        <div id='attachments'>
-          <%= f.fields_for :attachments do |attachment| %>
-            <%= render 'projects/attachment_fields', f: attachment %>
-          <% end %>
-          <div class='links'>
-            <%= link_to_add_association 'Add attachment', f, :attachments, partial: 'projects/attachment_fields' %>
-          </div>
+      <h4 class="text-center">Project attachments</h4>
+      <div id='attachments'>
+        <%= f.fields_for :attachments do |attachment| %>
+          <%= render 'projects/attachment_fields', f: attachment %>
+        <% end %>
+        <div class='links text-right'>
+          <%= link_to_add_association(fa_icon('plus', text: 'Add attachment'), f, :attachments, partial: 'projects/attachment_fields', class: 'btn btn-sm btn-info') %>
         </div>
       </div>
     </div>
   </div>
-  <%= link_to_remove_association "Remove Project", f %>
+  <div class="text-right">
+    <%= link_to_remove_association(fa_icon('times', text: 'Remove Project'), f, class: 'btn btn-danger') %>
+  </div>
 </div>
