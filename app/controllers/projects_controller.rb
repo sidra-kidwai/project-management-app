@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   def show
     @comments = @project.comments
-    @payments = @project.payments
+    @time_logs = @project.time_logs
   end
 
   def new

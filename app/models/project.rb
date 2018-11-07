@@ -16,4 +16,8 @@ class Project < ApplicationRecord
   def no_of_payments
     payments.count
   end
+
+  def assigned?(user)
+    users.where(id: user.id).exists?
+  end
 end

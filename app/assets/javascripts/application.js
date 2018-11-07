@@ -18,3 +18,5 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require chosen-jquery
+//= require moment
+//= require bootstrap-datetimepicker
