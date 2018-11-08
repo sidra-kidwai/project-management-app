@@ -22,4 +22,8 @@ class TimeLog < ApplicationRecord
   def hours_spent
     ((ending_time - starting_time) / 1.hour).round
   end
+
+  def self.check_monthly_hours
+    joins(:project).group('projects.id').where('(starting_time BETWEEN ? AND ?) AND (ending_time BETWEEN ? AND ?) ', Time.now.beginning_of_month, Time.now.end_of_month, Time.now.beginning_of_month, Time.now.end_of_month).order('hours_sum DESC').limit(5).pluck('projects.name, sum(HOUR(TIMEDIFF(time_logs.ending_time, time_logs.starting_time))) as hours_sum')
+  end
 end

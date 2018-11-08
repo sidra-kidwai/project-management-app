@@ -1,71 +1,63 @@
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-12">
-      <div class="well">
-        <h4>Dashboard</h4>
-        <p>Some text..</p>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Users</h4>
-            <p>1 Million</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Pages</h4>
-            <p>100 Million</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Sessions</h4>
-            <p>10 Million</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="well">
-            <p>Text</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p>
-          </div>
-        </div>
-      </div>
+<div class="container">
+  <div class="row padding-top">
+    <div class="col-md-6">
+      <%= column_chart @total_monthly_earning,
+        title: "Top Five Projects (By Monthly Earning For #{(Time.now).strftime("%B %Y")})",
+        prefix: "$",
+        label: "Payment",
+        colors: ['brown']
+      %>
+    </div>
+    <div class="col-md-6">
+      <%= column_chart @total_monthly_hours,
+        title: "Top Five Projects (By Logged Hours For #{(Time.now).strftime("%B %Y")})",
+        label: "Hours",
+        colors: ['brown']
+      %>
+    </div>
+  </div>
+  <div class="row padding-top">
+    <div class="col-md-6">
+      <h4>Top 5 Projects</h4>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Hours Logged</th>
+            <th>Total Earning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_five.each do |project| %>
+            <tr>
+              <td><%= link_to project.name, project %></td>
+              <td><%= project.total_logged_hours %></td>
+              <td><%= currency_tag %><%= project.total_earnings %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <h4>Bottom 5 Projects</h4>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Hours Logged</th>
+            <th>Total Earning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @last_five.each do |project| %>
+            <tr>
+              <td><%= link_to project.name, project %></td>
+              <td><%= project.total_logged_hours %></td>
+              <td><%= currency_tag %><%= project.total_earnings %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
