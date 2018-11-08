@@ -9,5 +9,5 @@ $(document).on "turbolinks:load", ->
       scrollmem = $('body').scrollTop()
       window.location.hash = @hash
       $('html,body').scrollTop scrollmem
-      return
+      return false
     return
