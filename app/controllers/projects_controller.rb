@@ -9,8 +9,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @comments = @project.comments
-    @payments = @project.payments
+    @comments = @project.comments.includes(:user)
+    @time_logs = @project.time_logs.includes(:user)
   end
 
   def new

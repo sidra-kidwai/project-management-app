@@ -17,7 +17,8 @@
           <td><%= project.details.truncate(30, separator: /\s/) %></td>
           <td>
             <%= link_to (fa_icon 'plus', text: 'Payment'), new_project_payment_path(project), remote: true, class: "btn btn-primary btn-xs" if policy(Payment).new? %>
-            <%= link_to (fa_icon 'comments'), new_project_comment_path(project), remote: true, class: "btn btn-primary btn-xs" %>
+            <%= comment_new_button(project) %>
+            <%= show_new_time_log(project) %>
           </td>
         </tr>
       <% end %>

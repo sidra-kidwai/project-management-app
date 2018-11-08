@@ -1,0 +1,8 @@
+<tr>
+  <td>Hours logged by <%= time_log.user.name %> on <%= date_format('date', time_log.created_at) %> at <%= date_format('time', time_log.created_at) %></td>
+  <td class='time-log-<%= time_log.id %>'><%= time_log.hours_spent %></td>
+  <td>
+    <%= link_to fa_icon('pencil', text: 'Edit'), edit_project_time_log_path(project, time_log), remote: true, class: "btn btn-primary btn-xs" if policy(time_log).edit? %>
+    <%= link_to fa_icon('trash', text: 'Delete'), [project, time_log], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" if policy(time_log).destroy? %>
+  </td>
+</tr>

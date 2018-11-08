@@ -24,16 +24,38 @@
             <strong>Total Payments:</strong>
           </td>
           <td>
-            <%= show_project_payments(@project, @payments) %>
+            <%= show_project_payments(@project) %>
           </td>
         </tr>
       </table>
       <%= show_edit_button(@project) %>
       <%= show_delete_button(@project) %>
-      <div class="comments text-left">
-        <h4>Comments</h4>
-        <div id="comments">
-          <%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @project } %>
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to 'Comments', '#comment', data: { toggle: 'tab' } %></li>
+        <li><%= link_to 'Time Logs', '#time-log', data: { toggle: 'tab' } %></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="comment" class="tab-pane fade in active">
+          <div id="comments" class="text-left">
+            <%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @project } %>
+          </div>
+          <%= link_to (fa_icon 'comments', text: 'New Comment'), new_project_comment_path(@project), remote: true, class: 'btn btn-primary btn-sm' if policy(Comment).new? %>
+        </div>
+        <div id="time-log" class="tab-pane fade">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Details</th>
+                <th>Hours Spent</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="time-log-table">
+              <%= render partial: 'time_logs/time_log', collection: @time_logs, locals: { project: @project } %>
+            </tbody>
+          </table>
+          <%= show_new_time_log(@project) %>
         </div>
       </div>
     </div>
