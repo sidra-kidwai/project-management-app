@@ -9,8 +9,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @comments = @project.comments
-    @time_logs = @project.time_logs
+    @comments = @project.comments.page(params[:comment_page]).per(5)
+    @time_logs = @project.time_logs.page(params[:time_log_page]).per(5)
   end
 
   def new

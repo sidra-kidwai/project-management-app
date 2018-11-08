@@ -5,7 +5,7 @@ class TimeLogsController < ApplicationController
   before_action :set_time_log, only: %i[edit update destroy]
 
   def index
-    @time_logs = @project.time_logs
+    @time_logs = @project.time_logs.page(params[:page]).per(10)
   end
 
   def new

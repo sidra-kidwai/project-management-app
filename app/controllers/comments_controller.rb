@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy edit update]
 
   def index
-    @comments = @commentable.comments
+    @comments = @commentable.comments.page(params[:page]).per(5)
     authorize @comments
   end
 

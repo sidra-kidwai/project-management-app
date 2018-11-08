@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   before_action :find_client, only: %i[show edit update destroy]
 
   def index
-    @clients = Client.all
+    @clients = Client.all.page(params[:page]).per(10)
     authorize @clients
   end
 
