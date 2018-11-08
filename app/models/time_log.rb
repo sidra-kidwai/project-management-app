@@ -10,7 +10,8 @@ class TimeLog < ApplicationRecord
            :check_ending_time
 
   def check_start_time
-    errors.add(:starting_time, "can't be greater than ending time.") if starting_time.present? && starting_time > ending_time
+    errors.add(:starting_time, "can't be greater than ending time.") if
+    starting_time.present? && ending_time.present? && starting_time > ending_time
   end
 
   def check_ending_time

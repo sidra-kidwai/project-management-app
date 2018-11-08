@@ -1,18 +1,3 @@
 $("#modal-display").html("<%= j render "form" %>");
 $('#timelog_modal').modal('show');
-$(function () {
-  $('#datepicker-start').datetimepicker({
-    format: 'DD-MM-YYYY HH:mm:ss Z'
-  });
-  $('#datepicker-end').datetimepicker({
-      useCurrent: false, //Important! See issue #1075
-      format: 'DD-MM-YYYY HH:mm:ss Z'
-
-  });
-  $("#datepicker-start").on("dp.change", function (e) {
-      $('#datepicker-end').data("DateTimePicker").minDate(e.date);
-  });
-  $("#datepicker-end").on("dp.change", function (e) {
-      $('#datepicker-start').data("DateTimePicker").maxDate(e.date);
-  });
-});
+addTimeLogValidation();
