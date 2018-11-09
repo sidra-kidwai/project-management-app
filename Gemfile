@@ -38,6 +38,7 @@ gem 'activeadmin'
 gem 'cocoon'
 gem 'devise'
 gem 'pundit'
+gem 'thinking-sphinx', '~> 4.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

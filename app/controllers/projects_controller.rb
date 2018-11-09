@@ -4,8 +4,8 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.all
-    authorize @projects
+    @projects = Project.search(params[:search])
+    authorize @projects if @projects.present?
   end
 
   def show

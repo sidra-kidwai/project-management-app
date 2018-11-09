@@ -4,8 +4,8 @@ class ClientsController < ApplicationController
   before_action :find_client, only: %i[show edit update destroy]
 
   def index
-    @clients = Client.all
-    authorize @clients
+    @clients = Client.search(params[:search])
+    authorize @clients if @clients.present?
   end
 
   def show; end
