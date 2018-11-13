@@ -29,8 +29,24 @@ class Project < ApplicationRecord
     time_logs.sum(&:hours_spent)
   end
 
-  def self.total_earning
-    projects = Payment.joins(:project).group(:project).order('sum_amount DESC').sum(:amount)
-    projects.map(&:first)
+  def self.top_five_earnings
+    total_earning.first(5)
+  end
+
+  def self.last_five_earnings
+    total_earning.last(5).reverse
+  end
+
+  class << self
+    private
+
+    def total_earning
+      @total_earning ||=
+        Payment.joins(:project)
+               .group(:project)
+               .order('sum_amount DESC')
+               .sum(:amount)
+               .map(&:first)
+    end
   end
 end
