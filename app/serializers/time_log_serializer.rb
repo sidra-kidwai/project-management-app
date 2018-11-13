@@ -5,7 +5,7 @@ class TimeLogSerializer < ActiveModel::Serializer
   attributes :id, :hours_spent, :user_name
 
   def hours_spent
-    hours_spent
+    object.hours_spent
   end
 
   def user_name

@@ -5,4 +5,5 @@ class ApiController < ActionController::Base
   respond_to :json
 
   include Authenticable
+  include ExceptionHandler
 end
