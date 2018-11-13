@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = @project.payments.page(params[:page])
-    authorize @payments
+    authorize Payment
   end
 
   def new
@@ -41,6 +41,7 @@ class PaymentsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+    authorize @project, :show?
   end
 
   def payment_params

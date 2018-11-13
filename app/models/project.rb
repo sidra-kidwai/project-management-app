@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  paginates_per DEFAULT_PER_PAGE
   belongs_to :client
   has_many :project_users
   has_many :users, through: :project_users, dependent: :destroy
@@ -12,7 +13,6 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
-  paginates_per PER_PAGE
 
   def no_of_payments
     payments.count

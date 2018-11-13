@@ -2,6 +2,8 @@
 
 class User < ApplicationRecord
   enum role: %i[user manager admin]
+
+  paginates_per DEFAULT_PER_PAGE
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :recoverable,
@@ -16,8 +18,6 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   accepts_nested_attributes_for :attachment, allow_destroy: true
-
-  paginates_per PER_PAGE
 
   def fetch_attachment
     attachment.nil? ? build_attachment : attachment

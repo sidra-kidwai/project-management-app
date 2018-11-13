@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TimeLog < ApplicationRecord
+  paginates_per FIVE_PER_PAGE
   belongs_to :user
   belongs_to :project
 
@@ -8,8 +9,6 @@ class TimeLog < ApplicationRecord
   validates :ending_time, presence: true
   validate :check_start_time,
            :check_ending_time
-
-  paginates_per FIVE_PER_PAGE
 
   def check_start_time
     errors.add(:starting_time, "can't be greater than ending time.") if

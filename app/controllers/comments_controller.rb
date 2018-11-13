@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @commentable.comments.page(params[:page])
-    authorize @comments
+    authorize Comment
   end
 
   def new
@@ -54,6 +54,7 @@ class CommentsController < ApplicationController
   def set_commentable
     klass, param = commentable_class
     @commentable = klass.find(params[param.to_sym]) if klass
+    authorize @commentable, :show?
   end
 
   def comment_params

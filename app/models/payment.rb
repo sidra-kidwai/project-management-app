@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Payment < ApplicationRecord
+  paginates_per DEFAULT_PER_PAGE
   belongs_to :project
   delegate :client, to: :project
 
@@ -8,5 +9,4 @@ class Payment < ApplicationRecord
   validates :payment_date, presence: true
 
   scope :recent, -> { order(created_at: :desc) }
-  paginates_per PER_PAGE
 end

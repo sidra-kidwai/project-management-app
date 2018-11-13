@@ -6,7 +6,7 @@ class TimeLogsController < ApplicationController
 
   def index
     @time_logs = @project.time_logs.includes(:user).page(params[:page])
-    authorize @time_logs
+    authorize TimeLog
   end
 
   def new
@@ -42,6 +42,7 @@ class TimeLogsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+    authorize @project, :show?
   end
 
   def time_log_params
