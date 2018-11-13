@@ -1,4 +1,6 @@
 #= require active_admin/base
+//= require highcharts.js
+//= require chartkick
 //= require chosen-jquery
 
 $ ->
