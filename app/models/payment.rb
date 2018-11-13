@@ -8,4 +8,5 @@ class Payment < ApplicationRecord
   validates :payment_date, presence: true
 
   scope :recent, -> { order(created_at: :desc) }
+  paginates_per PER_PAGE
 end

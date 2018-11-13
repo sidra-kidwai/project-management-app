@@ -5,7 +5,7 @@ class TimeLogsController < ApplicationController
   before_action :set_time_log, only: %i[edit update destroy]
 
   def index
-    @time_logs = @project.time_logs.includes(:user).page(params[:page]).per(10)
+    @time_logs = @project.time_logs.includes(:user).page(params[:page])
     authorize @time_logs
   end
 

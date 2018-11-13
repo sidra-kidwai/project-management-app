@@ -12,6 +12,7 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
+  paginates_per PER_PAGE
 
   def no_of_payments
     payments.count

@@ -6,4 +6,6 @@ class Client < ApplicationRecord
   accepts_nested_attributes_for :projects, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
+
+  paginates_per PER_PAGE
 end

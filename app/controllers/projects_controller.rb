@@ -4,13 +4,13 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.latest.page(params[:page]).per(10)
+    @projects = Project.latest.page(params[:page])
     authorize Project
   end
 
   def show
-    @comments = @project.comments.includes(:user).page(params[:comment_page]).per(5)
-    @time_logs = @project.time_logs.includes(:user).page(params[:time_log_page]).per(5)
+    @comments = @project.comments.includes(:user).page(params[:comment_page])
+    @time_logs = @project.time_logs.includes(:user).page(params[:time_log_page])
   end
 
   def new

@@ -9,6 +9,8 @@ class TimeLog < ApplicationRecord
   validate :check_start_time,
            :check_ending_time
 
+  paginates_per FIVE_PER_PAGE
+
   def check_start_time
     errors.add(:starting_time, "can't be greater than ending time.") if
     starting_time.present? && ending_time.present? && starting_time > ending_time

@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :attachment, allow_destroy: true
 
+  paginates_per PER_PAGE
+
   def fetch_attachment
     attachment.nil? ? build_attachment : attachment
   end

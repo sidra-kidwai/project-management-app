@@ -7,4 +7,6 @@ class Comment < ApplicationRecord
   validates :content, presence: true
 
   scope :recent, -> { order(created_at: :desc) }
+
+  paginates_per FIVE_PER_PAGE
 end

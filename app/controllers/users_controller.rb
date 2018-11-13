@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show]
 
   def index
-    @users = User.all.page(params[:comment_page]).per(10)
+    @users = User.latest.page(params[:page])
   end
 
   def show; end
