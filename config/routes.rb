@@ -13,7 +13,11 @@ Rails.application.routes.draw do
       resources :sessions, only: %i[create destroy]
       resources :projects, only: %i[show index]
     end
+
+    get '*path', action: 'not_found'
+    post '*path', action: 'not_found'
   end
+
 
   concern :commentable do
     resources :comments
@@ -24,4 +28,5 @@ Rails.application.routes.draw do
     resources :payments
     resources :time_logs
   end
+
 end

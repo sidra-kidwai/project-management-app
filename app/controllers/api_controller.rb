@@ -6,4 +6,13 @@ class ApiController < ActionController::Base
 
   include Authenticable
   include ExceptionHandler
+
+  def not_found
+    json = {
+      url: request.url,
+      message: "Request method '#{request.method}' not supported"
+    }
+
+    render json: json, status: :not_found
+  end
 end

@@ -4,7 +4,7 @@ class Api::V1::ProjectsController < ApiController
   before_action :authenticate_with_token!
 
   def show
-    respond_with Project.find(params[:id])
+    respond_with Project.find_by!(id: params[:id])
   end
 
   def index

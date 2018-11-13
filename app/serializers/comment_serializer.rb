@@ -2,9 +2,9 @@
 
 class CommentSerializer < ActiveModel::Serializer
   belongs_to :user
-  attributes :id, :content, :user_name
+  attributes :id, :content, :username
 
-  def user_name
+  def username
     object.user.name
   end
 end

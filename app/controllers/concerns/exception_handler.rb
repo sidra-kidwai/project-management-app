@@ -8,9 +8,8 @@ module ExceptionHandler
   class InvalidToken < StandardError; end
 
   included do
-    rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
+    rescue_from ActiveRecord::RecordInvalid, with: :unauthorized_request
     rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
-    rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -18,7 +17,7 @@ module ExceptionHandler
       error = {}
       error[parameter_missing_exception.param] = ['parameter is required']
       response = { errors: [error] }
-      json_response(response, status: :unprocessable_entity)
+      render json: response, status: :unprocessable_entity
     end
   end
 
