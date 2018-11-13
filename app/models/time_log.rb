@@ -37,12 +37,4 @@ class TimeLog < ApplicationRecord
                    .limit(5)
                    .pluck('projects.name, sum(HOUR(TIMEDIFF(time_logs.ending_time, time_logs.starting_time))) as hours_sum')
   end
-
-  def self.current_month_start
-    Time.zone.now.beginning_of_month
-  end
-
-  def self.current_month_end
-    Time.zone.now.end_of_month
-  end
 end
