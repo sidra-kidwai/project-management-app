@@ -11,7 +11,7 @@ class Payment < ApplicationRecord
 
   def self.check_monthly_earning
     joins(:project).group('projects.id')
-                   .where('payment_date BETWEEN ? AND ? ', Time.now.beginning_of_month, Time.now.end_of_month)
+                   .where('payment_date BETWEEN ? AND ?', Time.now.beginning_of_month, Time.now.end_of_month)
                    .order('payment_sum DESC')
                    .limit(5)
                    .pluck('projects.name, sum(payments.amount) as payment_sum')
