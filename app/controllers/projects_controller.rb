@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.latest.page(params[:page])
+    @projects = Project.search(params[:search]).page(params[:page])
     authorize Project
   end
 

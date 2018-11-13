@@ -1,7 +1,9 @@
 <div class="container">
   <h1>Clients
-    <%= show_create_button(@clients.model) %>
+    <%= show_create_button(Client) %>
   </h1>
+  <%= render partial: 'shared/search', locals: { object: Client } %>
+
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
       <tr>

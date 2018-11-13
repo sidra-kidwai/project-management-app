@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :attachment, allow_destroy: true
 
+  before_save :generate_authentication_token!
+
   def fetch_attachment
     attachment.nil? ? build_attachment : attachment
   end
@@ -29,5 +31,13 @@ class User < ApplicationRecord
 
   def inactive_message
     'Your account has been disabled!'
+  end
+
+  def ensure_authentication_token
+    self.auth_token = generate_authentication_token if auth_token.blank?
+  end
+
+  def generate_authentication_token!
+    self.auth_token = Devise.friendly_token if self.class.exists?(auth_token: auth_token)
   end
 end
