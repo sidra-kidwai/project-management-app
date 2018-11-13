@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show]
 
   def index
-    @users = User.search(params[:search])
+    @users = User.search(params[:search]).page(params[:page])
   end
 
   def show; end
