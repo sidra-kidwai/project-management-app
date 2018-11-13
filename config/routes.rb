@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     post '*path', action: 'not_found'
   end
 
-
   concern :commentable do
     resources :comments
   end
@@ -28,5 +27,4 @@ Rails.application.routes.draw do
     resources :payments
     resources :time_logs
   end
-
 end
