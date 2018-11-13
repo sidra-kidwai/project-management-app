@@ -31,14 +31,17 @@
       <%= show_edit_button(@project) %>
       <%= show_delete_button(@project) %>
       <ul class="nav nav-tabs">
-        <li class="active"><%= link_to 'Comments', '#comment', data: { toggle: 'tab' } %></li>
-        <li><%= link_to 'Time Logs', '#time-log', data: { toggle: 'tab' } %></li>
+        <li><%= link_to 'Comments', '#comment' %></li>
+        <li><%= link_to 'Time Logs', '#time-log' %></li>
       </ul>
 
       <div class="tab-content">
         <div id="comment" class="tab-pane fade in active">
           <div id="comments" class="text-left">
             <%= render partial: 'comments/comment', collection: @comments, locals: { commentable: @project } %>
+          </div>
+          <div class="paginate">
+            <%= paginate @comments, param_name: 'comment_page', params: { anchor: 'comment' } %>
           </div>
           <%= link_to (fa_icon 'comments', text: 'New Comment'), new_project_comment_path(@project), remote: true, class: 'btn btn-primary btn-sm' if policy(Comment).new? %>
         </div>
@@ -55,6 +58,9 @@
               <%= render partial: 'time_logs/time_log', collection: @time_logs, locals: { project: @project } %>
             </tbody>
           </table>
+          <div class="paginate">
+            <%= paginate @time_logs, param_name: 'time_log_page', params: { anchor: 'time-log' } %>
+          </div>
           <%= show_new_time_log(@project) %>
         </div>
       </div>

@@ -5,8 +5,8 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: %i[edit update destroy]
 
   def index
-    @payments = @project.payments
-    authorize @payments
+    @payments = @project.payments.page(params[:page])
+    authorize Payment
   end
 
   def new
@@ -41,6 +41,7 @@ class PaymentsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+    authorize @project, :show?
   end
 
   def payment_params

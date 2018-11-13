@@ -2,6 +2,8 @@
 
 class User < ApplicationRecord
   enum role: %i[user manager admin]
+
+  paginates_per DEFAULT_PER_PAGE
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :recoverable,

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show]
 
   def index
-    @users = User.all
+    @users = User.latest.page(params[:page])
   end
 
   def show; end

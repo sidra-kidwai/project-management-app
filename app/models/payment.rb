@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Payment < ApplicationRecord
+  paginates_per DEFAULT_PER_PAGE
   belongs_to :project
   delegate :client, to: :project
 

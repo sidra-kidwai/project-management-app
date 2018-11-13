@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin'
 gem 'cocoon'
 gem 'devise'
+gem 'kaminari'
 gem 'pundit'
 
 # Use ActiveStorage variant
