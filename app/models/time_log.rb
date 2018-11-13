@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TimeLog < ApplicationRecord
+  paginates_per FIVE_PER_PAGE
   belongs_to :user
   belongs_to :project
 

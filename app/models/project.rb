@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  paginates_per DEFAULT_PER_PAGE
   belongs_to :client
   has_many :project_users
   has_many :users, through: :project_users, dependent: :destroy

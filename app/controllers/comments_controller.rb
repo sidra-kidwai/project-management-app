@@ -5,8 +5,8 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy edit update]
 
   def index
-    @comments = @commentable.comments
-    authorize @comments
+    @comments = @commentable.comments.page(params[:page])
+    authorize Comment
   end
 
   def new
@@ -54,6 +54,7 @@ class CommentsController < ApplicationController
   def set_commentable
     klass, param = commentable_class
     @commentable = klass.find(params[param.to_sym]) if klass
+    authorize @commentable, :show?
   end
 
   def comment_params
