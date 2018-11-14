@@ -2,7 +2,9 @@
 
 ActiveAdmin.register Client do
   permit_params :name, :description,
-                projects_attributes: [:id, :name, :details, :_destroy, attachments_attributes: %i[id file _destroy]]
+                projects_attributes: [:id, :name, :details, :_destroy,
+                                      attachments_attributes:
+                                                          %i[id file _destroy]]
 
   form do |f|
     f.semantic_errors(*f.object.errors.keys)

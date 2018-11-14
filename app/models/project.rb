@@ -10,7 +10,8 @@ class Project < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :time_logs, dependent: :destroy
 
-  accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :attachments, reject_if: :all_blank,
+                                              allow_destroy: true
 
   validates :name, presence: true
 

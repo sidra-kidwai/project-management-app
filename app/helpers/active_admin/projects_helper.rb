@@ -2,6 +2,10 @@
 
 module ActiveAdmin::ProjectsHelper
   def attachment_hint(attachment)
-    attachment.object.file.present? ? image_tag(attachment.object.url(:thumb)) : content_tag(:span, 'no file yet')
+    if attachment.object.file.present?
+      content_tag(:span, 'no file yet')
+    else
+      image_tag(attachment.object.url(:thumb))
+    end
   end
 end

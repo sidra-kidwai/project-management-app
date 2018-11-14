@@ -13,7 +13,8 @@ class Attachment < ApplicationRecord
   validates :file, attachment_presence: true
   validates_with AttachmentPresenceValidator, attributes: :file
   validates_attachment_content_type :file, content_type: %r{/\Aimage\/.*\z/}
-  validates_with AttachmentSizeValidator, attributes: :file, less_than: 1.megabytes
+  validates_with AttachmentSizeValidator, attributes: :file,
+                                          less_than: 1.megabytes
 
   def url(style = :medium)
     file.url(style)
