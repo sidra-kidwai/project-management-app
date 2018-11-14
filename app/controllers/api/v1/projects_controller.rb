@@ -8,6 +8,7 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def index
-    respond_with Project.search(params[:search]), each_serializer: ProjectsSerializer
+    respond_with Project.search(params[:search]),
+                 each_serializer: ProjectsSerializer
   end
 end

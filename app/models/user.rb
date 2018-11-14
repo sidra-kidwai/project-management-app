@@ -38,6 +38,7 @@ class User < ApplicationRecord
   end
 
   def generate_authentication_token!
-    self.auth_token = Devise.friendly_token if self.class.exists?(auth_token: auth_token)
+    self.auth_token = Devise.friendly_token if
+    self.class.exists?(auth_token: auth_token)
   end
 end
