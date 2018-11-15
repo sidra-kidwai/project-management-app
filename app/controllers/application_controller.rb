@@ -30,8 +30,9 @@ class ApplicationController < ActionController::Base
       user_params.permit(:name, :email, :password, :password_confirmation)
     end
     devise_parameter_sanitizer.permit(:account_update) do |user_params|
-      user_params.permit(:name, :email, :password, :password_confirmation, :current_password,
-                         attachment_attributes: %i[id file attachable_id attachable_type])
+      user_params.permit(:name, :email, :password, :password_confirmation,
+                         :current_password, attachment_attributes:
+                         %i[id file attachable_id attachable_type])
     end
   end
 

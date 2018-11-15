@@ -53,6 +53,9 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :details, :client_id, user_ids: [], attachments_attributes: %i[id file _destroy])
+    params.require(:project).permit(:name, :details, :client_id,
+                                    user_ids: [],
+                                    attachments_attributes:
+                                        %i[id file _destroy])
   end
 end

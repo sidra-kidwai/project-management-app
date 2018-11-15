@@ -49,6 +49,8 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :description, projects_attributes: %i[id name details _destroy])
+    params.require(:client).permit(:name, :description,
+                                   projects_attributes:
+                                        %i[id name details _destroy])
   end
 end
